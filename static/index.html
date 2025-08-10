@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Agentic Dev Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <!-- Highlight.js Theme (neutral/dimmed to work on both themes) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark-dimmed.min.css"/>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand">
+            <div class="brand-logo">⚡</div>
+            <div class="brand-text">
+              <div class="brand-title">Agentic Dev</div>
+              <div class="brand-subtitle">Streaming-first Assistant</div>
+            </div>
+          </div>
+          <button id="themeToggle" class="btn btn-ghost" title="Toggle theme">🌗</button>
+        </div>
+
+        <div class="sidebar-actions">
+          <button id="newSessionBtn" class="btn btn-primary">New Session</button>
+          <button id="clearWorkspaceBtn" class="btn btn-danger">Clear Workspace</button>
+          <button id="refreshTree" class="btn btn-ghost">Refresh Tree</button>
+        </div>
+
+        <div id="projectTree" class="project-tree" aria-label="Project Tree">
+          <!-- Tree populated by JS -->
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <h1 class="title">Agentic Dev Assistant</h1>
+            <span class="beta">beta</span>
+          </div>
+          <div class="topbar-right">
+            <div class="status">
+              <span class="status-label">Stream</span>
+              <span id="streamHealth" class="status-value">🟢 Healthy</span>
+            </div>
+            <div class="status">
+              <span class="status-label">Composer</span>
+              <span id="composerStatus" class="status-indicator ready">Ready</span>
+            </div>
+            <div class="status">
+              <span class="status-label">Input</span>
+              <span id="tokensCount" class="status-value muted">0 tokens</span>
+            </div>
+          </div>
+        </header>
+
+        <section id="conversationContainer" class="conversation" aria-live="polite" aria-busy="false">
+          <!-- Messages stream here -->
+        </section>
+
+        <footer class="composer">
+          <div class="input-wrap">
+            <textarea id="input" class="input" rows="1" placeholder="Type a message. Shift+Enter for newline."></textarea>
+          </div>
+          <button id="sendBtn" class="btn btn-accent" title="Send">Send ➤</button>
+        </footer>
+      </main>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div id="fileModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="fileModalTitle">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="fileModalTitle" class="modal-title">File</h3>
+          <button id="closeFileModal" class="btn btn-ghost" aria-label="Close">✖</button>
+        </div>
+        <div class="modal-body">
+          <pre class="code-preview"><code id="fileModalContent" class="language-plaintext"></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/common.min.js"></script>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
